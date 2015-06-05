@@ -33,6 +33,6 @@ end
 Dummy.foo
 Dummy.name
 
-p = Dummy.new
-p.bar
-p.to_s
+dummy = Dummy.new
+dummy.bar
+dummy.to_s
