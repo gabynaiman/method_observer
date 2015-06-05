@@ -1,5 +1,7 @@
 # MethodObserver
 
+Observe class and instance methods
+
 ## Installation
 
 Add this line to your application's Gemfile:
