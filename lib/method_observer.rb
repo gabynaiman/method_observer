@@ -45,10 +45,11 @@ class MethodObserver
       
       klass.send(:define_method, method) do |*args, &block|
         observe_before.call klass, :instance, method, args
-        observe_around.call klass, :instance, method, args do
+        result = observe_around.call klass, :instance, method, args do
           send observed_method, *args, &block
         end
         observe_after.call klass, :instance, method, args
+        result
       end
     end
 
@@ -63,10 +64,11 @@ class MethodObserver
       
       klass.send(:define_singleton_method, method) do |*args, &block|
         observe_before.call klass, :class, method, args
-        observe_around.call klass, :class, method, args do
+        result = observe_around.call klass, :class, method, args do
           send observed_method, *args, &block
         end
         observe_after.call klass, :class, method, args
+        result
       end
     end
 
