@@ -41,7 +41,6 @@ class MethodObserver
 
       observed_method = "__#{method}_observed__"
       klass.send :alias_method, observed_method, method
-      klass.send :private, observed_method
       
       klass.send(:define_method, method) do |*args, &block|
         observe_before.call klass, :instance, method, args
@@ -60,7 +59,6 @@ class MethodObserver
 
       observed_method = "__#{method}_observed__"
       klass.singleton_class.send :alias_method, observed_method, method
-      klass.singleton_class.send :private, :new
       
       klass.send(:define_singleton_method, method) do |*args, &block|
         observe_before.call klass, :class, method, args
